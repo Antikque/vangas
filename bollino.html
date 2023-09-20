@@ -24,12 +24,54 @@
             transition: background-image 1s;
         }
  <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+       #game-container {
+    position: fixed;
+    bottom: 0;
+    right: 20px; /* Змініть це значення, щоб задати більший відступ справа */
+    width: 300px; /* Змініть це значення, щоб збільшити ширину вікна гри */
+    height: 200px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+        }
+        #result {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+        #choices {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .choice-button {
+            padding: 10px 20px;
+            right: 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+ <style>
       
     
            
     </style>
 </head>
 <body>
+   <div id="game-container">
+        <h2>Гра "Камінь, ножиці, бумага"</h2>
+        <div id="result">Виберіть свій варіант</div>
+        <div id="choices">
+            <button class="choice-button" onclick="play('rock')">Камінь</button>
+            <button class="choice-button" onclick="play('scissors')">Ножиці</button>
+            <button class="choice-button" onclick="play('paper')">Бумага</button>
+        </div>
+    </div>
    
     <label for="name">Заповніть поле----------------------------------------------------------------------------------------:</label>
     <input type="text" id="name" placeholder="Обиріть ім'я герою">
@@ -126,6 +168,28 @@
         
         // Викликаємо функцію для зміни фонового зображення кожні 15 секунд
         setInterval(changeBackground, 15000); // 15000 мілісекунд = 15 секунд
+ function play(userChoice) {
+            const choices = ['rock', 'paper', 'scissors'];
+            const randomIndex = Math.floor(Math.random() * 3);
+            const computerChoice = choices[randomIndex];
+
+            let result = '';
+
+            if (userChoice === computerChoice) {
+                result = "Нічия!";
+            } else if (
+                (userChoice === 'rock' && computerChoice === 'scissors') ||
+                (userChoice === 'scissors' && computerChoice === 'paper') ||
+                (userChoice === 'paper' && computerChoice === 'rock')
+            ) {
+                result = "Ви перемогли!";
+            } else {
+                result = "Комп'ютер переміг!";
+            }
+
+            document.getElementById('result').textContent = `Ви вибрали ${userChoice}, комп'ютер вибрав ${computerChoice}. ${result}`;
+        }
     </script>
+    
 </body>
 </html>
