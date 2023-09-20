@@ -7,7 +7,7 @@
         #gameWindow {
             width: 400px;
             height: 400px;
-            background-color: #f0f0f0; /* Фоновий колір */
+            background-color: #f0f0f0; /* Фоновий колір (можете змінити цей код на будь-який інший колір) */
             border: 1px solid #000; /* Рамка */
             position: fixed;
             bottom: 0;
@@ -91,7 +91,7 @@
     </div>
    <div id="game-container">
         <h2>Гра "Камінь, ножиці, бумага"</h2>
-        <div id="result">Виберіть свій варіант</div>
+        <div id="resultRSP">Виберіть свій варіант</div>
         <div id="choices">
             <button class="choice-button" onclick="play('rock')">Камінь</button>
             <button class="choice-button" onclick="play('scissors')">Ножиці</button>
@@ -199,35 +199,46 @@
             const randomIndex = Math.floor(Math.random() * 3);
             const computerChoice = choices[randomIndex];
 
-            let result = '';
+            let resultRSP = '';
 
             if (userChoice === computerChoice) {
-                result = "Нічия!";
+                resultRSP = "Нічия!";
             } else if (
                 (userChoice === 'rock' && computerChoice === 'scissors') ||
                 (userChoice === 'scissors' && computerChoice === 'paper') ||
                 (userChoice === 'paper' && computerChoice === 'rock')
             ) {
-                result = "Ви перемогли!";
+                resultRSP = "Ви перемогли!";
             } else {
-                result = "ПЕНДЕХООООО!";
+                resultRSP = "Комп'ютер переміг!";
             }
 
-            document.getElementById('result').textContent = `Ви вибрали ${userChoice}, комп'ютер вибрав ${computerChoice}. ${result}`;
+            document.getElementById('resultRSP').textContent = `Ви вибрали ${userChoice}, комп'ютер вибрав ${computerChoice}. ${resultRSP}`;
         }
 
     </script>
- <!-- Віконечко гри -->
+  <!-- Віконечко гри -->
     <div id="gameWindow">
+        <!-- Тут буде ваша гра в покер -->
         <h1>Проста гра в покер</h1>
         <button onclick="dealCards()">Роздати карти</button>
         <div id="playerHand">Рука гравця: </div>
         <div id="computerHand">Рука комп'ютера: </div>
+        <div id="result">Результат: </div>
     </div>
     
 
-    <script>
-        // Функція для роздачі карт
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script>
+        // Функція для роздачі карт та визначення переможця
         function dealCards() {
             const deck = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
             const playerHand = [];
@@ -247,6 +258,39 @@
             // Виводимо руки гравця і комп'ютера на екран
             document.getElementById("playerHand").textContent = "Рука гравця: " + playerHand.join(", ");
             document.getElementById("computerHand").textContent = "Рука комп'ютера: " + computerHand.join(", ");
+
+            // Визначення переможця (приклад логіки)
+            const playerScore = calculateScore(playerHand);
+            const computerScore = calculateScore(computerHand);
+
+            let resultMessage = "Нічия!";
+            if (playerScore > computerScore) {
+                resultMessage = "Гравець переміг!";
+            } else if (playerScore < computerScore) {
+                resultMessage = "Комп'ютер переміг!";
+            }
+
+            document.getElementById("result").textContent = "Результат: " + resultMessage;
+        }
+
+        // Функція для обчислення суми карт гравця або комп'ютера (приклад логіки)
+        function calculateScore(hand) {
+            // Додайте вашу логіку для визначення комбінацій і розрахунку суми карт
+            // У цьому прикладі просто обчислюємо суму всіх карт
+            let score = 0;
+            for (let card of hand) {
+                if (!isNaN(parseInt(card))) {
+                    score += parseInt(card);
+                } else {
+                    // Обробка обличчя (J), дами (Q), королів (K) та тузів (A)
+                    if (card === "J" || card === "Q" || card === "K") {
+                        score += 10;
+                    } else if (card === "A") {
+                        score += 11; // Тузи можуть бути як 1, так і 11
+                    }
+                }
+            }
+            return score;
         }
     </script>
     
