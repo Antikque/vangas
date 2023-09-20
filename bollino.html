@@ -1,7 +1,19 @@
-
 <html>
 <head>
+   
     <title>Ванга Шняга</title>
+<style>
+        /* Стилі для віконечка гри */
+        #gameWindow {
+            width: 400px;
+            height: 400px;
+            background-color: #f0f0f0; /* Фоновий колір */
+            border: 1px solid #000; /* Рамка */
+            position: fixed;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
     <style>
         #output {
             text-align: center; /* Центрування тексту */
@@ -61,8 +73,22 @@
     
            
     </style>
+    <style>
+        /* CSS для встановлення фонового зображення */
+        #pageContainer {
+            background-image: url('img/6.jpg'); /* Встановіть шлях до вашого зображення */
+            background-size: cover; /* Заповнювати всю доступну область */
+            background-repeat: no-repeat; /* Заборонити повторення фону */
+        }
+
+        /* Додайте інші стилі за необхідності */
+    </style>
 </head>
 <body>
+   <div id="pageContainer">
+        <h1>Я вам НІЧЕГО не  должен</h1>
+        <p>Результат чи дегенерат ?.</p>
+    </div>
    <div id="game-container">
         <h2>Гра "Камінь, ножиці, бумага"</h2>
         <div id="result">Виберіть свій варіант</div>
@@ -189,7 +215,41 @@
 
             document.getElementById('result').textContent = `Ви вибрали ${userChoice}, комп'ютер вибрав ${computerChoice}. ${result}`;
         }
+
     </script>
+ <!-- Віконечко гри -->
+    <div id="gameWindow">
+        <h1>Проста гра в покер</h1>
+        <button onclick="dealCards()">Роздати карти</button>
+        <div id="playerHand">Рука гравця: </div>
+        <div id="computerHand">Рука комп'ютера: </div>
+    </div>
+    
+
+    <script>
+        // Функція для роздачі карт
+        function dealCards() {
+            const deck = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
+            const playerHand = [];
+            const computerHand = [];
+
+            // Роздаємо 5 карт гравцю і комп'ютеру
+            for (let i = 0; i < 5; i++) {
+                const randomIndex = Math.floor(Math.random() * deck.length);
+                playerHand.push(deck[randomIndex]);
+                deck.splice(randomIndex, 1);
+
+                const randomIndex2 = Math.floor(Math.random() * deck.length);
+                computerHand.push(deck[randomIndex2]);
+                deck.splice(randomIndex2, 1);
+            }
+
+            // Виводимо руки гравця і комп'ютера на екран
+            document.getElementById("playerHand").textContent = "Рука гравця: " + playerHand.join(", ");
+            document.getElementById("computerHand").textContent = "Рука комп'ютера: " + computerHand.join(", ");
+        }
+    </script>
+    
     
 </body>
 </html>
