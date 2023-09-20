@@ -1,0 +1,131 @@
+
+<html>
+<head>
+    <title>Ванга Шняга</title>
+    <style>
+        #output {
+            text-align: center; /* Центрування тексту */
+            margin-top: 20px; /* Відступ зверху для відцентрування по вертикалі */
+            font-size: 26px; /* Збільшений розмір шрифту */
+        }
+        #name {
+            display: block;
+            margin: 0 auto;
+            text-align: center;
+            
+        }
+         body {
+            background-size: 200px 200px; /* Розмір фонового зображення */
+            background-repeat: no-repeat;
+            background-position: center center; /* Розташування в центрі */
+            min-height: 100vh; /* Мінімальна висота для повного заповнення екрану */
+            margin: 0; /* Видалення відступів */
+            padding: 0; /* Видалення відступів */
+            transition: background-image 1s;
+        }
+ <style>
+      
+    
+           
+    </style>
+</head>
+<body>
+   
+    <label for="name">Заповніть поле----------------------------------------------------------------------------------------:</label>
+    <input type="text" id="name" placeholder="Обиріть ім'я герою">
+    <button id="generateButton">Що він сьогодні буде робити?</button>
+    <p id="output">Прогноз на майбутнє.</p>
+
+    <script>     
+         alert ("Доброго, дня !!!!!!!!!!!!!")
+
+       
+        const values = [
+  "сосати бібу?",
+  "трахати пацюків на калинці",
+"їсти чебурек з гівном?",
+  "тримати твій хуй?",
+          "їбатись в сраку?",
+  "пеніс твій на плечі?",
+"тримати какаху?",
+  "з верблюдом в Сракатан?",
+          "класти лічинку собі в залупу?",
+  "цілувати всім член?",
+"вітати мене як освободітеля, після того як я вийму хуй з його очка?",
+  "катись на моїй шляпі 2 часа мінімум?",         
+        "тримати хвіст поки буду трахти його?",
+          "лизати наші дупи?",
+  "чистити парашу?",
+"їсти з мого очка?",
+  "підмітати в мене в сараю?",
+          "брать 3 члена?",
+  "смотреть мне в  очко?",
+"передавати повітріний поцілуй з хуєм в роті?",
+  "тримати в роті мій подарунок?",
+         "іграть в ігру у меня на члене?",
+          "іграти в ігру в мене на колінах?",
+  "іграти в ігру сидячі з палкою в дупі?",
+"іграти в ігру сидячі на ділдо?",
+  "іграти в ігру сидячі на спермі?",
+          "тримати 2 шляпи на ногах?",
+  "сосать!!!!?",
+"сосать!!! сосать і еще раз сосать!?",
+  "сосать все громче?",
+         "сосать с успехом простітуткі?",
+          "брать в жопу?",
+  "спать с осламі ?",
+"спать с голимі пацикамі?",
+  "держать очко для меня?",
+         "держать очко для меня годамі?",
+          "цілувати членососку після мого члена?",
+  "цілувати всіх путан?",
+"цілувати з язичком очко ?",
+  "цілувати шлюху поки я її трахаю?",
+          "нюхать мой член за спасібо?",
+  "нухать мой жопа каждий день?",
+"дрочіть нам?",
+  "дрочіть мне?",
+         "за спасібо сосать?",
+"брати вихідні, щоб потримати член?",
+  "чай с членом?",
+          "кофе с членом?",
+  "трахатися по французькому?",
+"трахатися з французом?",
+  "брати за щоку?",
+];
+
+
+        // Отримуємо елементи за їхніми ідентифікаторами
+        const nameInput = document.getElementById("name");
+        const generateButton = document.getElementById("generateButton");
+        const outputElement = document.getElementById("output");
+
+        // Функція для генерації випадкового значення
+        function generateRandomValue() {
+            const randomIndex = Math.floor(Math.random() * values.length);
+            return values[randomIndex];
+        }
+
+        // Додаємо обробник події для кнопки
+        generateButton.addEventListener("click", function() {
+            const randomValue = generateRandomValue();
+            const userName = nameInput.value;
+            const message = ` ${userName} буде - ${randomValue}`;
+            outputElement.textContent = message;
+        });
+// Масив із шляхами до фонових зображень
+        const backgroundPaths = ["img/1.jpg", "img/2.jpg", "img/3.jpg", "img/4.jpg", "img/5.jpg"];
+        let currentBackgroundIndex = 0;
+
+       
+        // Функція для зміни фонового зображення
+        function changeBackground() {
+            document.body.style.backgroundImage = `url(${backgroundPaths[currentBackgroundIndex]})`;
+            currentBackgroundIndex = (currentBackgroundIndex + 1) % backgroundPaths.length;
+        }
+        
+        // Викликаємо функцію для зміни фонового зображення кожні 15 секунд
+        setInterval(changeBackground, 15000); // 15000 мілісекунд = 15 секунд
+    </script>
+</body>
+</html>
